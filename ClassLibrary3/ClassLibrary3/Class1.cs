@@ -11,54 +11,54 @@ namespace ClassLibrary3
         /// <param name="n">second argument of the S (number of members)</param>
         /// <param name="x">third argument of the S</param>
         /// <returns>returns the value of the S</returns>
-        public static double S(double eps, int n, double x)
+        public static double S(int eps, double n, double x)
         {
             double S = 0;
             for (int i = 1; i <= n; i++)
             {
-                S = S + Math.Pow(x, 2 * n) / fact(2 * n + 1);
-                if (Math.Abs(S) < eps)
-                { break; }
+                S = S + Math.Pow(x, 2 * n) / fact(eps,(2 * n + 1));
             }
-            return S;
+            return Math.Round(S, eps);
         }
 
         /// <summary>
         /// factorial
         /// </summary>
+        /// <param name="eps">epsilon number</param>
         /// <param name="n">number of members</param>
         /// <returns>returns the value of the fact</returns>
-        static double fact(int n)
+        static double fact(int eps, double n)
         {
             double tmp = 1;
             for (int i = 1; i <= n; i++)
             {
                 tmp = tmp * i;
             }
-            return tmp;
+            return Math.Round(tmp, eps);
         }
 
         /// <summary>
         /// T
         /// </summary>
-        /// <param name="S">first argument of the T</param>
-        /// <param name="func">second argument of the T</param>
+        /// <param name="eps">first argument of the T (epsilon number)</param>
+        /// <param name="S">second argument of the T</param>
+        /// <param name="func">third argument of the T</param>
         /// <returns></returns>
-        public static double T(double S, double func)
+        public static double T(int eps, double S, double func)
         {
-            double T = Math.Abs(S - func) / func * 1;
-            return T;
+            return Math.Round((Math.Abs(S - func) / func) * 100, eps);
         }
 
         /// <summary>
         /// func
         /// </summary>
-        /// <param name="x">first argument of the func</param>
+        /// <param name="eps">first argument of the T (epsilon number)</param>
+        /// <param name="x">second argument of the func</param>
         /// <returns></returns>
-        public static double func(double x)
+        public static double func(int eps, double x)
         {
             double func = (Math.Exp(x) + Math.Exp(-x)) / 2;
-            return func;
+            return Math.Round(func,eps);
         }
     }
 }
